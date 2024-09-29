@@ -1,0 +1,26 @@
+.nav {
+  margin: 27px auto 0;
+  width: 590px;
+  height: 50px;
+  background-color: #34495e;
+  border-radius: 8px;
+  font-size: 18px;
+}
+.list {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 24px;
+}
+.listItem {
+}
+.listItem .navLink {
+  transition: all 0.2s linear;
+}
+.listItem .navLink.active {
+  color: floralwhite;
+}
+.listItem .navLink:hover {
+  color: floralwhite;
+}
