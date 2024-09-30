@@ -1,0 +1,25 @@
+.wrapp {
+  margin-top: 20px;
+  padding: 20px;
+}
+.form {
+  display: flex;
+  gap: 20px;
+}
+
+.input {
+  width: 320px;
+  border-radius: 10px;
+  border: none;
+  padding: 14px;
+}
+
+.btn {
+  background-color: transparent;
+  border: 1px solid;
+}
+
+.btn:hover {
+  border-color: brown;
+  cursor: pointer;
+}

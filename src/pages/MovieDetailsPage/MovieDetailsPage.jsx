@@ -7,8 +7,8 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Loader from "../../components/Loader/Loader";
 
 const MovieDetailsPage = () => {
-  const { moviesId } = useParams();
-  const [isLoading, isError, movie] = useHttp(getMovieDetailis, moviesId);
+  const { movieId } = useParams();
+  const [isLoading, isError, movie] = useHttp(getMovieDetailis, movieId);
 
   return (
     <>

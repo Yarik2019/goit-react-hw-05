@@ -1,5 +1,6 @@
 import { useRef, Suspense } from "react";
-import { useLocation, Link, Outlet, useParams } from "react-router-dom";
+import { useLocation, Outlet, useParams, NavLink } from "react-router-dom";
+import { clsx } from "clsx";
 import { getImageUrl } from "../../services/tmdbApi";
 import s from "./MovieCard.module.css";
 import Loader from "../Loader/Loader";
@@ -7,13 +8,17 @@ import Loader from "../Loader/Loader";
 const MovieCard = ({ movie }) => {
   const location = useLocation();
   const backLink = useRef(location.state || "/movies");
+
   const { movieId } = useParams();
 
-  console.log(movie);
+  const buildLinkClass = ({ isActive }) => {
+    return clsx(s.link, isActive && s.active);
+  };
+
   if (!movie) return null;
+
   return (
     <div className={s.wrapp}>
-      <Link to={backLink.current}>Go back</Link>
       <h2 className={s.title}>{movie.title}</h2>
       <img
         src={getImageUrl(movie.poster_path)}
@@ -33,8 +38,16 @@ const MovieCard = ({ movie }) => {
         {movie.release_date ? movie.release_date.split("-")[0] : "N/A"}
       </p>
       <nav className={s.nav}>
-        <Link to={`/movies/${movieId}/cast`}>Cast</Link>
-        <Link to={`/movies/${movieId}/reviews`}>Reviews</Link>
+        {console.log(movieId)}
+        <NavLink to={`/movies/${movieId}/cast`} className={buildLinkClass}>
+          Cast
+        </NavLink>
+        <NavLink to={`/movies/${movieId}/reviews`} className={buildLinkClass}>
+          Reviews
+        </NavLink>
+        <NavLink to={backLink.current} className={buildLinkClass}>
+          Go back
+        </NavLink>
       </nav>
       <Suspense fallback={<Loader />}>
         <Outlet />
