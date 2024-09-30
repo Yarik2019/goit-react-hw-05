@@ -15,9 +15,9 @@ const MovieReviews = () => {
       {reviews && (
         <div className={s.wrapp}>
           <h3>Reviews:</h3>
-          <ul>
+          <ul className={s.reviewsList}>
             {reviews.map((review) => (
-              <li key={review.id}>
+              <li key={review.id} className={s.reviewItem}>
                 <p className={s.author}>{review.author}</p>
                 <p className={s.text}>{review.content}</p>
               </li>

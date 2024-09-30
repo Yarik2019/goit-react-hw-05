@@ -20,7 +20,7 @@ const MoviesPage = () => {
       <SearchForm handleQuery={handleQuery} />
       <h2 className={s.title}>Results</h2>
       {isLoading && <Loader />}
-      {isError && <ErrorMessage />}
+      {isError && <ErrorMessage message={isError} />}
       <MovieList movies={movies} />
     </>
   );

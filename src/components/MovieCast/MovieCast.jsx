@@ -16,7 +16,7 @@ const MovieCast = () => {
   return (
     <>
       {isLoading && <Loader />}
-      {isError && <ErrorMessage />}
+      {isError && <ErrorMessage message={isError} />}
       {cast && (
         <ul className={s.list}>
           {cast.map((actor) => (

@@ -20,34 +20,51 @@ const MovieCard = ({ movie }) => {
   return (
     <div className={s.wrapp}>
       <h2 className={s.title}>{movie.title}</h2>
-      <img
-        src={getImageUrl(movie.poster_path)}
-        alt={movie.title}
-        width="250"
-        className={s.img}
-      />
-      <p className={s.text}>
-        <span className={s.span}>Description: </span>
-        {movie.overview}
-      </p>
-      <p className={s.text}>
-        <span className={s.span}>Rating:</span> {movie.vote_average}
-      </p>
-      <p className={s.text}>
-        <span className={s.span}>Year: </span>
-        {movie.release_date ? movie.release_date.split("-")[0] : "N/A"}
-      </p>
+      <div className={s.blockInfo}>
+        <div className={s.blockImg}>
+          <img
+            src={getImageUrl(movie.poster_path)}
+            alt={movie.title}
+            width="250"
+            className={s.img}
+          />
+        </div>
+        <div className={s.textinfo}>
+          <p className={s.text}>
+            <span className={s.span}>Description: </span>
+            {movie.overview}
+          </p>
+          <p className={s.text}>
+            <span className={s.span}>Rating:</span> {movie.vote_average}
+          </p>
+          <p className={s.text}>
+            <span className={s.span}>Year: </span>
+            {movie.release_date ? movie.release_date.split("-")[0] : "N/A"}
+          </p>
+        </div>
+      </div>
+
       <nav className={s.nav}>
-        {console.log(movieId)}
-        <NavLink to={`/movies/${movieId}/cast`} className={buildLinkClass}>
-          Cast
-        </NavLink>
-        <NavLink to={`/movies/${movieId}/reviews`} className={buildLinkClass}>
-          Reviews
-        </NavLink>
-        <NavLink to={backLink.current} className={buildLinkClass}>
-          Go back
-        </NavLink>
+        <ul className={s.navList}>
+          <li className={s.listItem}>
+            <NavLink to={`/movies/${movieId}/cast`} className={buildLinkClass}>
+              Cast
+            </NavLink>
+          </li>
+          <li className={s.listItem}>
+            <NavLink
+              to={`/movies/${movieId}/reviews`}
+              className={buildLinkClass}
+            >
+              Reviews
+            </NavLink>
+          </li>
+          <li className={s.listItem}>
+            <NavLink to={backLink.current} className={buildLinkClass}>
+              Go back
+            </NavLink>
+          </li>
+        </ul>
       </nav>
       <Suspense fallback={<Loader />}>
         <Outlet />

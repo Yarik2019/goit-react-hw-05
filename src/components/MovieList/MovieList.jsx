@@ -8,7 +8,7 @@ const MovieList = ({ movies }) => {
     return clsx(s.link, isActive && s.active);
   };
   return (
-    <>
+    <div className={s.wrappList}>
       <ul className={s.list}>
         {movies?.map((movie) => (
           <li key={movie.id} className={s.item}>
@@ -22,7 +22,7 @@ const MovieList = ({ movies }) => {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };
 
