@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { searchMovies } from "../../services/tmdbApi";
 import { useHttp } from "../../hooks/useHttp";
 import SearchForm from "../../components/SearchForm/SearchForm";
@@ -7,12 +7,17 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import MovieList from "../../components/MovieList/MovieList";
 import s from "./MoviesPage.module.css";
 const MoviesPage = () => {
-  const [query, setQuery] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get("query") || "";
 
   const [isLoading, isError, movies] = useHttp(searchMovies, query);
 
   const handleQuery = (newQuery) => {
-    setQuery(newQuery);
+    if (newQuery === "") {
+      setSearchParams({});
+    } else {
+      setSearchParams({ query: newQuery });
+    }
   };
 
   return (
